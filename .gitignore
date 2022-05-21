@@ -1,0 +1,7 @@
+data/*
+src/static/*
+*/*__pycache__*
+*.pyc
+*.pyo
+.env
+.idea
