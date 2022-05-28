@@ -41,10 +41,16 @@ class ScaleAdmin(ToyModelAdminMixin):
     pass
 
 
+@admin.register(models.Wave)
+class WaveAdmin(ToyModelAdminMixin):
+    fields = ("name", "line", "description", "created_ts", "updated_ts", )
+    list_display = ("name", "line", "created_ts",)
+
+
 @admin.register(models.Toy)
 class ToyAdmin(ToyModelAdminMixin):
     fields = (
-        "name", "manufacturer", "license", "line", "scale", "quantity", "description", "created_ts", "updated_ts", )
+        "name", "manufacturer", "license", "line", "wave", "scale", "quantity", "description", "created_ts", "updated_ts", )
     list_display = ("name", "manufacturer", "license", "line", "scale", "quantity", "created_ts",)
     ordering = ("name", "created_ts",)
     readonly_fields = ["created_ts", "updated_ts", ]

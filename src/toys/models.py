@@ -46,17 +46,28 @@ class License(UrlToyModelMixin):
 
 class Line(ToyModelMixin):
     manufacturer = models.ForeignKey(Manufacturer, on_delete=models.DO_NOTHING, default="", blank=True, null=True)
-    pass
 
 
 class Scale(ToyModelMixin):
     pass
 
 
+class Wave(ToyModelMixin):
+    line = models.ForeignKey(Line, on_delete=models.DO_NOTHING, default="", blank=True, null=True)
+
+    class Meta:
+        indexes = [
+            models.Index(fields=["name", ]),
+            models.Index(fields=["line", ]),
+        ]
+        ordering = ["name", "line", "created_ts", ]
+
+
 class Toy(ToyModelMixin):
     manufacturer = models.ForeignKey(Manufacturer, on_delete=models.DO_NOTHING)
     license = models.ForeignKey(License, on_delete=models.DO_NOTHING)
     line = models.ForeignKey(Line, on_delete=models.DO_NOTHING)
+    wave = models.ForeignKey(Wave, on_delete=models.DO_NOTHING, default="", blank=True, null=True)
     scale = models.ForeignKey(Scale, on_delete=models.DO_NOTHING)
     quantity = models.IntegerField(default=1, blank=False, null=False)
 
@@ -67,6 +78,6 @@ class Toy(ToyModelMixin):
             models.Index(fields=["license", ]),
             models.Index(fields=["line", ]),
             models.Index(fields=["scale", ]),
-            models.Index(fields=["name", ])
+            models.Index(fields=["name", ]),
         ]
-        ordering = ["name", "manufacturer", "license", "line", "created_ts", ]
+        ordering = ["name", "manufacturer", "license", "line", "wave", "created_ts", ]

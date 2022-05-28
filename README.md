@@ -11,6 +11,11 @@ Converting [my toy list](https://docs.google.com/spreadsheets/d/1Zyjqlez0W6x_9fO
 
 ## Update Log
 
+**2022-05-27:** Started working on JSON endpoints for the dashboard.
+Created `start.bat` to speed up getting into the container when working on Windows.
+
+**2022-05-21:** Added Wave model and added it to Toy model.
+
 **2022-05-20:** Started the project.
 Learned about dos2unix after wasting a lot of time.
 Created the base Docker image.

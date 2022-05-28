@@ -2,9 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{% block title %}{% endblock %}</title>
+    <script src="/static/js/jquery-3.6.0.min.js"></script>
+    {% block script %}{% endblock %}
 </head>
 <body>
-
+{% block content %}{% endblock %}
 </body>
 </html>
