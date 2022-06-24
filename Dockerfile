@@ -15,7 +15,8 @@ RUN python -m venv /app/venv && \
     apt-get install -y dos2unix && \
     apt-get clean && \
     dos2unix /app/bin/*.sh && \
-    chmod a+x /app/bin/*.sh
+    chmod a+x /app/bin/*.sh && \
+    /app/src/manage.py collectstatic -c --noinput
 
 ENV PATH="/app/venv/bin:/app/bin:$PATH"
 

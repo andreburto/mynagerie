@@ -2,8 +2,10 @@
 
 {% block title %}Dashboard{% endblock %}
 
-{% block script %}<script src="/js/toys_dashboard.js"></script>{% endblock %}
+{% block script %}<script src="/static/js/toys_dashboard.js"></script>{% endblock %}
 
 {% block content %}
-<a href="{{ data_url }}">{{ data_url }}</a>
+<script>
+    loadToyList();
+</script>
 {% endblock %}
