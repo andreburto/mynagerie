@@ -18,6 +18,10 @@ This minified file is used.
 Download the file and save it in `/src/mynagerie/static/js` as `jquery-3.6.0.min.js`.
 It will be moved to the right place when `collectstatic` is run.
 
+#### Terraform
+
+[Terraform](https://www.terraform.io/) is used to create AWS resources that will be used by the app.
+
 
 ## To Do
 
@@ -25,6 +29,11 @@ It will be moved to the right place when `collectstatic` is run.
 * Toy dashboard
 
 ## Update Log
+
+**2022-07-02:** Added initial Terraform scripts.
+Cleaned up the "start" scripts so they now automatically start the app.
+**DID NOT** rewrite `start.bat` to be a PowerShell file despite my desire.
+Created the initial JS display for toy lists.
 
 **2022-06-23:** Updated requirements section of README.
 Started working on the JS part of the interface.

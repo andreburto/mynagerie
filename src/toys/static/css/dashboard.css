@@ -1,7 +1,33 @@
 /* Not CSS! */
 body {
-    background-color: #ffffff;
+    background-color: #efeffe;
     border: 0px none;
     margin: 0px;
     padding: 0px;
+    right: 0px;
+}
+
+table#toyList {
+    background: #0000cc;
+    padding: 1px;
+}
+
+table#toyList > tr > th, td {
+    text-align: center;
+    padding: 5px;
+    background: #deedee;
+    font-family: "Roboto Slab", "ff-tisa-web-pro", "Georgia", Arial, sans-serif;
+}
+
+table#toyList > tr > td {
+    font-size: 10pt;
+}
+
+table#toyList > tr > th {
+    font-weight: bold;
+    font-size: 12pt;
+}
+
+table#toyList > tr > th#tableTitle {
+    font-size: 16pt;
 }
