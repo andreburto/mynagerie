@@ -7,3 +7,5 @@ LINE_REACTION = "ReAction"
 LINE_ULTIMATES = "Ultimates"
 
 MANUFACTURER_SUPER7 = "Super7"
+
+TOYS_JSON_FILE = "toys.json"

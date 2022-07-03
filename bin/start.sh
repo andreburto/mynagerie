@@ -1,12 +1,14 @@
 #!/bin/bash
 
-# Temporary.
-dos2unix /app/.env
+# Ensure we start from the same directory as the script.
+cd $(dirname $0)
 
-. /app/venv/bin/activate
+# Move to the project root.
+cd ..
 
-. /app/.env
+CURRENT_DIR="$(pwd)"
 
-/app/src/manage.py collectstatic -c --noinput
-
-/app/src/manage.py runserver 0.0.0.0:8000
+docker run -it --env-file "${CURRENT_DIR}/.env" \
+--mount type=bind,source="${CURRENT_DIR}/src",target=/app/src \
+--mount type=bind,source="${CURRENT_DIR}/data",target=/app/data \
+-p 8000:8000 mynagerie $@

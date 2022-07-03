@@ -5,3 +5,4 @@ src/static/*
 *.pyo
 .env
 .idea
+.DS_Store

@@ -6,6 +6,12 @@ Converting [my toy list](https://docs.google.com/spreadsheets/d/1Zyjqlez0W6x_9fO
 
 ## Requirements
 
+#### AWS
+
+For the app and deployment scripts to work you will need AWS credentials that can manipulate Route53 and S3.
+These credentials should be put in the `.env` file in the root of the project.
+The variables names should be the default AWS ones for the access id and secret key.
+
 #### Python
 
 Python requirements are kept in the `requirements.txt` file within the project root directory.
@@ -25,10 +31,16 @@ It will be moved to the right place when `collectstatic` is run.
 
 ## To Do
 
-* Toy list
-* Toy dashboard
+* Toy dashboard should be interactive.
+* App deployment instructions.
+* Static site that can run from app or JSON.
+* Mobile and desktop apps, for fun.
 
 ## Update Log
+
+**2022-07-03:** Made `start.sh` a script to run on *nix systems to match `start.bat` on Windows.
+Updated `Dockerfile` to use `run.sh` when starting the app.
+Added admin feature to publish toys JSON to S3.
 
 **2022-07-02:** Added initial Terraform scripts.
 Cleaned up the "start" scripts so they now automatically start the app.

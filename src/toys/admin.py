@@ -1,7 +1,16 @@
-from django.contrib import admin
-from django.utils.html import format_html
+import boto3
+import json
 
+from django.conf import settings
+from django.contrib import admin
+from django.http import HttpResponseRedirect
+from django.urls import path
+from django.utils.html import format_html
+from django.utils.safestring import mark_safe
+
+from . import constants
 from . import models
+from . import views
 
 
 # Register your models here.
@@ -50,7 +59,26 @@ class WaveAdmin(ToyModelAdminMixin):
 @admin.register(models.Toy)
 class ToyAdmin(ToyModelAdminMixin):
     fields = (
-        "name", "manufacturer", "license", "line", "wave", "scale", "quantity", "description", "created_ts", "updated_ts", )
+        "name", "manufacturer", "license", "line", "wave", "scale", "quantity", "description", "created_ts",
+        "updated_ts", )
     list_display = ("name", "manufacturer", "license", "line", "scale", "quantity", "created_ts",)
     ordering = ("name", "created_ts",)
     readonly_fields = ["created_ts", "updated_ts", ]
+
+    def get_urls(self):
+        return [
+            path('publish_json/', self.publish_json),
+        ] + super().get_urls()
+
+    def publish_json(self, request):
+        s3_client = boto3.client("s3")
+        s3_client.put_object(
+            ACL="public-read",
+            Body=json.dumps(views.get_dashboard_data()).encode('utf-8'),
+            Bucket=settings.BUCKET_NAME,
+            ContentType="text/plain",
+            Key=constants.TOYS_JSON_FILE)
+        json_link_url = f"http://{settings.BUCKET_NAME}/{constants.TOYS_JSON_FILE}"
+        admin_message  = f'JSON Published - <a href="{json_link_url}" target="_top">{json_link_url}</a>'
+        self.message_user(request, mark_safe(admin_message))
+        return HttpResponseRedirect("../")

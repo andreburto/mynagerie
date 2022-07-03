@@ -1,3 +1,4 @@
+boto3==1.24.22
 Django==4.0.4
 matplotlib==3.5.2
-awscli==1.24.4
+awscli==1.25.22

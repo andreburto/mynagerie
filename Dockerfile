@@ -16,8 +16,9 @@ RUN python -m venv /app/venv && \
     apt-get clean && \
     dos2unix /app/* && \
     dos2unix /app/bin/*.sh && \
-    chmod a+x /app/bin/*.sh
+    chmod a+x /app/bin/run.sh && \
+    chmod a+x /app/src/manage.py
 
 ENV PATH="/app/venv/bin:/app/bin:$PATH"
 
-CMD start.sh
+CMD run.sh
