@@ -6,5 +6,7 @@ from toys import views
 urlpatterns = [
     path('', views.dashboard, name="dashboard"),
     path('data', views.dashboard_data, name="dashboard_data"),
-    path('list', views.toy_list, name="toy_list"),
+    path('sheet', views.sheet, name="sheet"),
+    path('sheet/data', views.sheet_data, name="sheet_data"),
+    path('sheet/data/<int:id>', views.sheet_data, name="sheet_data_by_id"),
 ]

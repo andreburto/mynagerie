@@ -1,7 +1,3 @@
-/**
- * Created by andrew on 5/27/2022.
- */
-
 const tableId = "#toyList";
 const divId = "#toyContent";
 
@@ -15,7 +11,6 @@ const makeHeader = () => {
 
 const displayToyList = (toyList) => {
     var rows = makeHeader();
-    
     $.each(toyList, function(idx, item) {
         rows.push($("<tr>").append(
             $("<td>").text(item.name), $("<td>").text(item.license), $("<td>").text(item.line)
@@ -23,7 +18,6 @@ const displayToyList = (toyList) => {
     });
 
     $("<table>", {class: "toyList", id: "toyList"}).appendTo(divId);
-
     $.each(rows, function (idx, item) {
         $(tableId).append(item);
     });

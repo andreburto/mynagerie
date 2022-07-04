@@ -2,7 +2,7 @@ import boto3
 import json
 
 from django.conf import settings
-from django.contrib import admin
+from django.contrib import admin, messages
 from django.http import HttpResponseRedirect
 from django.urls import path
 from django.utils.html import format_html
@@ -67,7 +67,8 @@ class ToyAdmin(ToyModelAdminMixin):
 
     def get_urls(self):
         return [
-            path('publish_json/', self.publish_json),
+           path('publish_json/', self.publish_json),
+           path('sync_sheet/', self.sync_sheet),
         ] + super().get_urls()
 
     def publish_json(self, request):
@@ -82,3 +83,31 @@ class ToyAdmin(ToyModelAdminMixin):
         admin_message  = f'JSON Published - <a href="{json_link_url}" target="_top">{json_link_url}</a>'
         self.message_user(request, mark_safe(admin_message))
         return HttpResponseRedirect("../")
+
+    def sync_sheet(self, request):
+        google_sheet_toy_list = views.get_sheet_data()
+        sheets_toy_data = google_sheet_toy_list.get("toys")[1:]
+        local_toys = models.Toy.objects.all()
+        missing = []
+        for toy in sheets_toy_data:
+            toy_record = local_toys.filter(
+                name=toy[0], line__name=toy[1], license__name=toy[2])
+            if toy_record.count() == 0:
+                missing.append(toy)
+        if missing:
+            toys_missing_from_local = ', '.join([f'{m[0]} ({m[1]})' for m in missing])
+            message = f"Toys missing from local database: {toys_missing_from_local}"
+            self.message_user(request, message, level=messages.ERROR)
+        else:
+            self.message_user(request, "All toys are synchronized.")
+        return HttpResponseRedirect("../")
+
+
+@admin.register(models.GoogleCredentials)
+class GoogleCredentialsAdmin(admin.ModelAdmin):
+    list_display = ("name", )
+
+
+@admin.register(models.GoogleSheets)
+class GoogleSheetsAdmin(admin.ModelAdmin):
+    list_display = ("name", "sheet_id", "sheet_data_link", )

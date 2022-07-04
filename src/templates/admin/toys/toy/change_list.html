@@ -8,5 +8,12 @@
         </form>
     </div>
     <br />
+    <div>
+        <form action="sync_sheet/" method="POST">
+            {% csrf_token %}
+            <button type="submit">Compare With Google Sheets</button>
+        </form>
+    </div>
+    <br />
     {{ block.super }}
 {% endblock %}

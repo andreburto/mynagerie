@@ -1,4 +1,7 @@
+awscli==1.25.22
 boto3==1.24.22
 Django==4.0.4
+google-api-python-client==2.52.0
+google-auth-httplib2==0.1.0
+google-auth-oauthlib==0.5.2
 matplotlib==3.5.2
-awscli==1.25.22

@@ -35,8 +35,12 @@ It will be moved to the right place when `collectstatic` is run.
 * App deployment instructions.
 * Static site that can run from app or JSON.
 * Mobile and desktop apps, for fun.
+* Add generalized field comparator to allow multiple sources from Google Sheets.
 
 ## Update Log
+
+**2022-07-04:** Added the ability to compare the local toy list with the primary source on Google Sheets.
+Can now store Google credentials and sheet ranges in the database.
 
 **2022-07-03:** Made `start.sh` a script to run on *nix systems to match `start.bat` on Windows.
 Updated `Dockerfile` to use `run.sh` when starting the app.
