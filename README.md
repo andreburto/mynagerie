@@ -39,6 +39,10 @@ It will be moved to the right place when `collectstatic` is run.
 
 ## Update Log
 
+**2022-07-13:** Started working on adding a Lambda function for a cloud-based endpoint.
+Created the `load-envfile.ps1` script to load environment variables from a Docker-based file while in PowerShell.
+This is needed for Terraform to work.
+
 **2022-07-04:** Added the ability to compare the local toy list with the primary source on Google Sheets.
 Can now store Google credentials and sheet ranges in the database.
 

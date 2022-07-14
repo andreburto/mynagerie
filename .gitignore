@@ -6,3 +6,5 @@ src/static/*
 .env
 .idea
 .DS_Store
+.terraform*
+terraform.tfstate*

@@ -1,6 +1,11 @@
-variable "domain_url" {
+variable "app_name" {
   type    = string
-  default = "mynagerie.mothersect.info"
+  default = "mynagerie"
+}
+
+variable "domain_prefix" {
+  type    = string
+  default = "mothersect.info"
 }
 
 variable "zone_id" {

@@ -24,7 +24,7 @@ locals {
 }
 
 resource "aws_s3_bucket" "mynagerie_bucket" {
-  bucket = var.domain_url
+  bucket = "${var.app_name}.${var.domain_prefix}"
   acl    = "public-read"
 
   policy = <<EOF
@@ -38,7 +38,7 @@ resource "aws_s3_bucket" "mynagerie_bucket" {
         "AWS": "*"
       },
       "Action": "s3:GetObject",
-      "Resource": "arn:aws:s3:::${var.domain_url}/*"
+      "Resource": "arn:aws:s3:::${var.app_name}.${var.domain_prefix}/*"
     }
   ]
 }
@@ -50,7 +50,7 @@ EOF
   }
 
   tags = {
-    Name        = var.domain_url
+    Name        = "${var.app_name}.${var.domain_prefix}"
     Environment = "development"
   }
 }
@@ -58,7 +58,7 @@ EOF
 # DNS stuff
 resource "aws_route53_record" "mynagerie" {
   zone_id = var.zone_id
-  name    = "${var.domain_url}."
+  name    = "${var.app_name}.${var.domain_prefix}."
   type    = "A"
 
   alias {
@@ -67,3 +67,10 @@ resource "aws_route53_record" "mynagerie" {
     evaluate_target_health = false
   }
 }
+
+//# SSM stuff
+//resource "aws_ssm_parameter" "test" {
+//  name    = "/${var.app_name}/test"
+//  type    = "String"
+//  value   = "Andy"
+//}
