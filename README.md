@@ -28,7 +28,6 @@ It will be moved to the right place when `collectstatic` is run.
 
 [Terraform](https://www.terraform.io/) is used to create AWS resources that will be used by the app.
 
-
 ## To Do
 
 * Toy dashboard should be interactive.
@@ -38,6 +37,9 @@ It will be moved to the right place when `collectstatic` is run.
 * Add generalized field comparator to allow multiple sources from Google Sheets.
 
 ## Update Log
+
+**2022-07-31:** Fixed start scripts to use `--rm` to clean up containers.
+Fixed `start.bat` to run from project root directory and project `bin` directory.
 
 **2022-07-13:** Started working on adding a Lambda function for a cloud-based endpoint.
 Created the `load-envfile.ps1` script to load environment variables from a Docker-based file while in PowerShell.
