@@ -74,3 +74,13 @@ resource "aws_route53_record" "mynagerie" {
 //  type    = "String"
 //  value   = "Andy"
 //}
+
+# DynamoDB for backups
+resource "aws_dynamodb_table" "backup_table" {
+  "attribute" {
+    name = ""
+    type = ""
+  }
+  hash_key = ""
+  name = ""
+}

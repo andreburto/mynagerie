@@ -35,8 +35,13 @@ It will be moved to the right place when `collectstatic` is run.
 * Static site that can run from app or JSON.
 * Mobile and desktop apps, for fun.
 * Add generalized field comparator to allow multiple sources from Google Sheets.
+* Tests, tests, tests.
 
 ## Update Log
+
+**2022-08-28:** Moved Google tables out of `toys` app and into `auth_tools`.
+Deleted old tables and manually migrated data to the new ones, so no complex migration files.
+Need to make tests if I'm going to start moving tables around.
 
 **2022-07-31:** Fixed start scripts to use `--rm` to clean up containers.
 Fixed `start.bat` to run from project root directory and project `bin` directory.

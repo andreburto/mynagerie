@@ -101,13 +101,3 @@ class ToyAdmin(ToyModelAdminMixin):
         else:
             self.message_user(request, "All toys are synchronized.")
         return HttpResponseRedirect("../")
-
-
-@admin.register(models.GoogleCredentials)
-class GoogleCredentialsAdmin(admin.ModelAdmin):
-    list_display = ("name", )
-
-
-@admin.register(models.GoogleSheets)
-class GoogleSheetsAdmin(admin.ModelAdmin):
-    list_display = ("name", "sheet_id", "sheet_data_link", )

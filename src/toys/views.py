@@ -8,6 +8,8 @@ from django.urls import reverse
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 
+from auth_tools import models as at_models
+
 from . import constants, models
 
 
@@ -54,9 +56,10 @@ def sheet(request):
 
 def get_sheet_data(id=None):
     if id:
-        google_sheet = models.GoogleSheets.objects.get(id=id)
+        google_sheet = at_models.GoogleSheets.objects.get(id=id)
     else:
-        google_sheet = models.GoogleSheets.objects.all().order_by("id").first()
+        # The first record here belongs to my Super7 sheet. This is a hack and should be fixed one day.
+        google_sheet = at_models.GoogleSheets.objects.all().order_by("id").first()
 
     service_credentials = json.loads(str(google_sheet.credentials.credentials).strip())
 
