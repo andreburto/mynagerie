@@ -87,6 +87,7 @@ class ToyAdmin(ToyModelAdminMixin):
     def sync_sheet(self, request):
         google_sheet_toy_list = views.get_sheet_data()
         sheets_toy_data = google_sheet_toy_list.get("toys")[1:]
+        # This implies all toys are Super7. Needs a dropdown menu to select type.
         local_toys = models.Toy.objects.all()
         missing = []
         for toy in sheets_toy_data:

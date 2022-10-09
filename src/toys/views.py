@@ -2,6 +2,7 @@ import json
 
 from django.db.models import Count, F
 from django.http import HttpResponse, JsonResponse
+from django.shortcuts import redirect
 from django.template.loader import render_to_string
 from django.urls import reverse
 
@@ -15,11 +16,7 @@ from . import constants, models
 
 # Create your views here.
 def dashboard(request):
-    return HttpResponse(render_to_string(
-        "toys/dashboard.html",
-        {
-            "data_url": reverse("dashboard_data"),
-        }))
+    return redirect("/toys/data")
 
 
 def get_dashboard_data():

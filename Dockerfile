@@ -1,7 +1,5 @@
 FROM --platform=linux/amd64 python:3.9
 
-EXPOSE 8000
-
 WORKDIR /app
 
 COPY . /app

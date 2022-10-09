@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+  nginx:
+    depends_on:
+      - app
+    expose:
+      - "8000"
+    image: nginx:latest
+    ports:
+      - 8000:8000
+    volumes:
+      - type: bind
+        source: ./ui
+        target: /ui
+      - type: bind
+        source: ./nginx/nginx.conf
+        target: /etc/nginx/nginx.conf
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: /app/bin/run.sh
+    env_file: ./.env
+    hostname: app
+    volumes:
+      - type: bind
+        source: ./src
+        target: /app/src
+      - type: bind
+        source: ./data
+        target: /app/data
+      - type: bind
+        source: ./bin
+        target: /app/bin
+    working_dir: /app

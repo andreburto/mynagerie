@@ -39,6 +39,11 @@ It will be moved to the right place when `collectstatic` is run.
 
 ## Update Log
 
+**2022-10-09:** Started splitting up the UI components out of the Django app.
+Having a separate UI will make working on the JS easier and will make future deployment plans easier.
+To facilitate a static site the `docker-compose.yml` file was added to run [Nginx](http://nginx.org/) as a reverse proxy.
+The "start" scripts in `bin` will still be used when doing backend work.
+
 **2022-08-28:** Moved Google tables out of `toys` app and into `auth_tools`.
 Deleted old tables and manually migrated data to the new ones, so no complex migration files.
 Need to make tests if I'm going to start moving tables around.
